@@ -1,0 +1,11 @@
+{
+    "go.inferGopath": false,
+    "cSpell.ignoreWords": [
+        "batchv",
+        "cetokjob",
+        "corev",
+        "envs",
+        "metav",
+        "specversion"
+    ]
+}

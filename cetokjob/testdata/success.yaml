@@ -1,0 +1,9 @@
+---
+- name: full-config
+  image: debian
+  command: echo CONFIGMAP_SAMPLE:$(CONFIGMAP_SAMPLE) SECRET_SAMPLE:$(SECRET_SAMPLE) MSG:$(MSG)
+  configmap: sample-configmap
+  secret: sample-secret
+- name: simple-config
+  image: debian
+  command: echo CONFIGMAP_SAMPLE:$(CONFIGMAP_SAMPLE) SECRET_SAMPLE:$(SECRET_SAMPLE) MSG:$(MSG)

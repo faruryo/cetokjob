@@ -1,0 +1,21 @@
+apiVersion: skaffold/v2beta9
+kind: Config
+metadata:
+  name: dns-tools
+build:
+  artifacts:
+  - image: cetokjob
+    docker:
+      dockerfile: Dockerfile
+  local:
+    useBuildkit: true
+deploy:
+  kubectl:
+    manifests:
+    - kubernetes/deployment.yaml
+    - kubernetes/config.yaml
+portForward:
+- resourceType: service
+  resourceName: cetokjob
+  port: 80
+  localPort: 8080

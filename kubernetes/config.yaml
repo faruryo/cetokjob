@@ -1,0 +1,35 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sample-configmap
+data:
+  CONFIGMAP_SAMPLE: "configmap-sample"
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: sample-secret
+data:
+  SECRET_SAMPLE: "c2VjcmV0LXNhbXBsZQ=="
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cetokjob
+data:
+  config.yaml: |
+    ---
+    - name: full-config
+      image: debian
+      command: echo CONFIGMAP_SAMPLE:$(CONFIGMAP_SAMPLE) SECRET_SAMPLE:$(SECRET_SAMPLE) MSG:$(MSG)
+      configmap: sample-configmap
+      secret: sample-secret
+    - name: simple-config
+      image: debian
+      command: echo CONFIGMAP_SAMPLE:$(CONFIGMAP_SAMPLE) SECRET_SAMPLE:$(SECRET_SAMPLE) MSG:$(MSG)
+    # - name: error config # invalid DNS-1123
+    #   image: debian
+    #   command: echo CONFIGMAP_SAMPLE:$(CONFIGMAP_SAMPLE) SECRET_SAMPLE:$(SECRET_SAMPLE) MSG:$(MSG)

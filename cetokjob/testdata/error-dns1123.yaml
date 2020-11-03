@@ -1,0 +1,4 @@
+---
+- name: Invalid-hostname # invalid DNS-1123
+  image: debian
+  command: echo CONFIGMAP_SAMPLE:$(CONFIGMAP_SAMPLE) SECRET_SAMPLE:$(SECRET_SAMPLE) MSG:$(MSG)

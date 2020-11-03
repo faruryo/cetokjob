@@ -1,0 +1,4 @@
+---
+parse: "hoge"
+- name: config
+  image: debian

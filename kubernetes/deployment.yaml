@@ -1,0 +1,70 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: cetokjob
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: cetokjob
+rules:
+  - apiGroups: [""]
+    resources: ["jobs"]
+    verbs: ["create", "update", "get"]
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: cetokjob
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: cetokjob
+subjects:
+- kind: ServiceAccount
+  name: cetokjob
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cetokjob
+spec:
+  replicas: 1
+  selector:
+    matchLabels: &labels
+      app: cetokjob
+  template:
+    metadata:
+      labels: *labels
+    spec:
+      serviceAccountName: cetokjob
+      containers:
+        - name: cetokjob
+          image: cetokjob
+          command:
+            - ./cetokjob
+          args:
+            - /config/config.yaml
+          volumeMounts:
+          - name: config
+            mountPath: "/config"
+            readOnly: true
+      volumes:
+        - name: config
+          configMap:
+            name: cetokjob
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: cetokjob
+spec:
+  selector:
+    app: cetokjob
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080

@@ -7,3 +7,6 @@
 - name: simple-config
   image: debian
   command: echo CONFIGMAP_SAMPLE:$(CONFIGMAP_SAMPLE) SECRET_SAMPLE:$(SECRET_SAMPLE) MSG:$(MSG)
+- name: "1000000000200000000030000000004000000000333" # Character count 43
+  image: debian
+  command: echo Check the maximum number of characters in the name

@@ -2,8 +2,8 @@ package cetokjob
 
 import (
 	"context"
-	"crypto/md5"
 	"fmt"
+	"hash/fnv"
 	"log"
 	"regexp"
 	"strings"
@@ -72,11 +72,19 @@ func makePodTemplateSpec(jobconfig JobConfig, envs *[]corev1.EnvVar) corev1.PodT
 	return newPodTemplateSpec
 }
 
+func hash(s string) uint32 {
+	h := fnv.New32a()
+	h.Reset()
+	h.Write([]byte(s))
+	sum := h.Sum32()
+	return sum
+}
+
 func makeJob(jc JobConfig, envs *[]corev1.EnvVar) *batchv1.Job {
 	newPodTemplateSpec := makePodTemplateSpec(jc, envs)
 	job := &batchv1.Job{}
 	job.Spec.Template = newPodTemplateSpec
-	job.Name = fmt.Sprintf("%s-%x-%d", jc.Name, md5.Sum([]byte(fmt.Sprint(newPodTemplateSpec))), time.Now().Unix())
+	job.Name = fmt.Sprintf("%s-%x-%d", jc.Name, hash(fmt.Sprint(newPodTemplateSpec)), time.Now().Unix())
 	return job
 }
 

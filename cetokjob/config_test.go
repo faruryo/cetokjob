@@ -30,6 +30,11 @@ func TestLoadJobConfig(t *testing.T) {
 					Image:   "debian",
 					Command: "echo CONFIGMAP_SAMPLE:$(CONFIGMAP_SAMPLE) SECRET_SAMPLE:$(SECRET_SAMPLE) MSG:$(MSG)",
 				},
+				{
+					Name:    "1000000000200000000030000000004000000000333",
+					Image:   "debian",
+					Command: "echo Check the maximum number of characters in the name",
+				},
 			},
 		},
 		{
@@ -41,8 +46,12 @@ func TestLoadJobConfig(t *testing.T) {
 			err:  errors.New("Failed to unmarshal the config file : yaml: line 2: did not find expected key"),
 		},
 		{
-			path: "testdata/error-name.yaml",
+			path: "testdata/error-no-name.yaml",
 			err:  errors.New("Config validate error: name is required"),
+		},
+		{
+			path: "testdata/error-name-over.yaml",
+			err:  errors.New("Config validate error: name must be no more than 43 characters"),
 		},
 		{
 			path: "testdata/error-image.yaml",

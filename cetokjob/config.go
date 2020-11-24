@@ -10,11 +10,11 @@ import (
 
 // JobConfig represents the configuration of a job.
 type JobConfig struct {
-	Name      string `json:"name"`
-	Image     string `json:"image"`
-	Command   string `json:"command"`
-	Configmap string `json:"configmap"`
-	Secret    string `json:"secret"`
+	Name      string   `json:"name"`
+	Image     string   `json:"image"`
+	Command   []string `json:"command"`
+	Configmap string   `json:"configmap"`
+	Secret    string   `json:"secret"`
 }
 
 // LoadJobConfig reads the configuration file and returns []JobConfig

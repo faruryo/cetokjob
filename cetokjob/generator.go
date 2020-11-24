@@ -6,7 +6,6 @@ import (
 	"hash/fnv"
 	"log"
 	"regexp"
-	"strings"
 	"time"
 
 	batchv1 "k8s.io/api/batch/v1"
@@ -60,7 +59,7 @@ func makePodTemplateSpec(jobconfig JobConfig, envs *[]corev1.EnvVar) corev1.PodT
 				{
 					Name:    "job",
 					Image:   jobconfig.Image,
-					Command: strings.Fields(jobconfig.Command),
+					Command: jobconfig.Command,
 					Env:     *envs,
 					EnvFrom: envFrom,
 				},

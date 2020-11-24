@@ -116,7 +116,7 @@ func TestGenerateJob(t *testing.T) {
 				{
 					Name:      "test",
 					Image:     "test/image",
-					Command:   "ls -lt",
+					Command:   []string{"ls", "-lt"},
 					Configmap: "cm",
 					Secret:    "sec",
 				},

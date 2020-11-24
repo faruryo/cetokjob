@@ -129,9 +129,8 @@ func TestGenerateJob(t *testing.T) {
 				},
 			}),
 			envMap: map[string]string{
-				"KEY1":       "VALUE1",
-				"camelCase":  "Camel",
-				"Snake_Case": "Snake",
+				"KEY1": "VALUE1",
+				"msg":  "message",
 			},
 			jobs: []batchv1.Job{
 				{
@@ -154,12 +153,8 @@ func TestGenerateJob(t *testing.T) {
 												Value: "VALUE1",
 											},
 											{
-												Name:  "camelCase",
-												Value: "Camel",
-											},
-											{
-												Name:  "Snake_Case",
-												Value: "Snake",
+												Name:  "msg",
+												Value: "message",
 											},
 										},
 										EnvFrom: []corev1.EnvFromSource{

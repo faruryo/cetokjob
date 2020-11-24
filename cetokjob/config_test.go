@@ -23,7 +23,7 @@ func TestLoadJobConfig(t *testing.T) {
 					Image: "debian",
 					Command: []string{
 						"echo",
-						"CONFIGMAP_SAMPLE:$(CONFIGMAP_SAMPLE) SECRET_SAMPLE:$(SECRET_SAMPLE) MSG:$(MSG)",
+						"CONFIGMAP_SAMPLE:$(CONFIGMAP_SAMPLE) SECRET_SAMPLE:$(SECRET_SAMPLE) msg:$(msg)",
 					},
 					Args: []string{
 						"args1",

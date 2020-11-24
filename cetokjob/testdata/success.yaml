@@ -3,7 +3,7 @@
   image: debian
   command:
     - echo
-    - CONFIGMAP_SAMPLE:$(CONFIGMAP_SAMPLE) SECRET_SAMPLE:$(SECRET_SAMPLE) MSG:$(MSG)
+    - CONFIGMAP_SAMPLE:$(CONFIGMAP_SAMPLE) SECRET_SAMPLE:$(SECRET_SAMPLE) msg:$(msg)
   args:
     - args1
     - args2

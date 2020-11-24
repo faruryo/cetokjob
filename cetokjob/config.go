@@ -13,6 +13,7 @@ type JobConfig struct {
 	Name      string   `json:"name"`
 	Image     string   `json:"image"`
 	Command   []string `json:"command"`
+	Args      []string `json:"args"`
 	Configmap string   `json:"configmap"`
 	Secret    string   `json:"secret"`
 }

@@ -25,24 +25,21 @@ func TestLoadJobConfig(t *testing.T) {
 						"echo",
 						"CONFIGMAP_SAMPLE:$(CONFIGMAP_SAMPLE) SECRET_SAMPLE:$(SECRET_SAMPLE) MSG:$(MSG)",
 					},
+					Args: []string{
+						"args1",
+						"args2",
+					},
 					Configmap: "sample-configmap",
 					Secret:    "sample-secret",
 				},
 				{
 					Name:  "simple-config",
 					Image: "debian",
-					Command: []string{
-						"echo",
-						"CONFIGMAP_SAMPLE:$(CONFIGMAP_SAMPLE) SECRET_SAMPLE:$(SECRET_SAMPLE) MSG:$(MSG)",
-					},
 				},
 				{
+					// Test the maximum number of characters in Name
 					Name:  "1000000000200000000030000000004000000000333",
 					Image: "debian",
-					Command: []string{
-						"echo",
-						"Check the maximum number of characters in the name",
-					},
 				},
 			},
 		},

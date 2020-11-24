@@ -75,7 +75,7 @@ func makePodTemplateSpec(jobconfig JobConfig, envs *[]corev1.EnvVar) corev1.PodT
 func hash(s string) uint32 {
 	h := fnv.New32a()
 	h.Reset()
-	h.Write([]byte(s))
+	_, _ = h.Write([]byte(s))
 	sum := h.Sum32()
 	return sum
 }

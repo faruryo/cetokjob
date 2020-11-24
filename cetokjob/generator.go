@@ -52,6 +52,9 @@ func makePodTemplateSpec(jobconfig JobConfig, envs *[]corev1.EnvVar) corev1.PodT
 			},
 		})
 	}
+	if len(envFrom) == 0 {
+		envFrom = nil
+	}
 
 	newPodTemplateSpec := corev1.PodTemplateSpec{
 		Spec: corev1.PodSpec{
@@ -60,6 +63,7 @@ func makePodTemplateSpec(jobconfig JobConfig, envs *[]corev1.EnvVar) corev1.PodT
 					Name:    "job",
 					Image:   jobconfig.Image,
 					Command: jobconfig.Command,
+					Args:    jobconfig.Args,
 					Env:     *envs,
 					EnvFrom: envFrom,
 				},

@@ -25,7 +25,7 @@ jobs:
         with:
           go-version: 1.15
 
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       # cache store
       - name: cache
@@ -54,7 +54,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Run tests
         env:
@@ -76,7 +76,7 @@ jobs:
     if: github.event_name == 'push'
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Get current time
         uses: srfrnk/current-time@master

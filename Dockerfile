@@ -10,6 +10,6 @@ COPY . ./
 RUN ls -lt
 RUN GOOS=linux go build -mod=readonly  -v  -o /cetokjob
 
-FROM alpine:3.12
+FROM alpine:3.24
 COPY --from=builder /cetokjob .
 ENTRYPOINT ["./cetokjob"]
